@@ -15,6 +15,7 @@ export class TaskService {
       id: this.currentId++,
       title,
       description,
+      completed: false, // Add default value
     };
     this.tasks.push(newTask);
     return newTask;
@@ -53,6 +54,12 @@ export class TaskService {
   deleteTask(id: number): Task {
     const task = this.getTaskById(id);
     this.tasks = this.tasks.filter((t) => t.id !== id);
+    return task;
+  }
+
+  completeTask(id: number, completed: boolean): Task {
+    const task = this.getTaskById(id);
+    task.completed = completed;
     return task;
   }
 }
